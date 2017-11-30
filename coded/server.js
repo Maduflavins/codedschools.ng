@@ -7,6 +7,7 @@ const ejsmate      =      require('ejs-mate');
 const session      =      require('express-session');
 const cookieParser =      require('cookie-parser');
 const flash        =      require('express-flash');
+var secret         =      require('./config/secret');
 var User           =      require('./models/user');
 var Universities   =      require('./models/universities');
 
@@ -16,7 +17,7 @@ var app = express();
 
 
 mongoose.Promise = global.Promise;
-var promise = mongoose.connect('mongodb://codedschool:codedschool@ds121336.mlab.com:21336/codedschools_ng_database' ,{useMongoClient: true}, (err) =>{
+var promise = mongoose.connect(secret.database,{useMongoClient: true}, (err) =>{
   if(err){
     console.log(err)
   }else{
@@ -31,7 +32,7 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: "codedschoolsng is the new way"
+  secret: secret.secretKey
 }));
 app.use(flash());
 
@@ -59,6 +60,6 @@ app.use(adminRoutes, function(req, res, next){
 
 
 
-app.listen(3000, function(){
-  console.log("app is runing on port 3000");
+app.listen(secret.port, function(){
+  console.log(`app is runing on port. ${secret.port}`);
 })
