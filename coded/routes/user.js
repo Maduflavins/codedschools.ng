@@ -2,6 +2,10 @@ const express = require('express');
 const router = express.Router();
 var User = require('../models/user');
 
+router.get('/signup', (req, res, next)=>{
+  res.render('accounts/signup');
+
+})
 
 router.post('/signup', (req, res, next) =>{
   var user = new User;
@@ -10,9 +14,6 @@ router.post('/signup', (req, res, next) =>{
   user.profile.firstname = req.body.firstname;
   user.profile.lastname = req.body.lastname;
   user.profile.coded = req.body.coded;
-  user.address      = req.body.address;
-  user.history.paid = req.body.paid;
-  user.history.date = req.body.date;
 
   User.findOne({email: req.body.email}, function(err, existingUser){
     if(exstingUser){

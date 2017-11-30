@@ -1,7 +1,44 @@
+<% layout('layout') -%>
+
 <div class = "row">
   <div class= "col-lg-6 col-md-offset-3">
     <form method="POST">
-      <input type
+      <h1>Sign Up</h1>
+      <div class="form-group">
+          <label="firstname">firstname:</label>
+          <input type="text" class="form-control" name="firstname">
+      </div>
+      <div class="form-group">
+        <label="lastname">lastname:</label>
+          <input type="text" class="form-control" name="lastname">
+      </div>
+      <div class="form-group">
+        <label="email">email:</label>
+        <input type="email" class="form-control" name="email">
+      </div>
+      <div class="form-group">
+        <label="phone No">phone No:</label>
+        <input type="number" class="form-control" name="phonenumber">
+      </div>
+      <div class="form-group">
+        <label="password">password:</label>
+        <input type="password" class="form-control" name="password">
+      </div>
+      <div class="form-group">
+        <label="coded">coded:</label>
+        <select class="form-control" name="coded">
+          <option>parent</option>
+          <option>teacher</option>
+          <option>investor</option>
+          <option>undergraduate student</option>
+          <option>primary student</option>
+          <option>secondary student</option>
+          <option>corper</option>
+          <option>job seeker</option>
+          <option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-success">submit</button>
     </form>
   </div>
 </div>

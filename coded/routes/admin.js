@@ -11,7 +11,7 @@ router.post("/add-category", (req, res, next)=>{
 
   category.save((err)=>{
     if(err) return next(err)
-    req.flas('success', successfully added a new category)
+    req.flas('success', 'successfully added a new category')
     return res.redirect("/add-category");
   })
 })

@@ -4,6 +4,9 @@ const mongoose     =      require('mongoose');
 const bodyParser   =      require('body-parser');
 const ejs          =      require('ejs');
 const ejsmate      =      require('ejs-mate');
+const session      =      require('session');
+const cookieParser =      require('cookie-parser');
+const flash        =      require('express-flash');
 var User           =      require('./models/user');
 var Universities   =      require('./models/universities');
 
@@ -24,6 +27,13 @@ var promise = mongoose.connect('mongodb://codedschool:codedschool@ds121336.mlab.
 // MiddleWare
 
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(cookieParser());
+app.use(session({
+  resave: true;
+  saveUninitialized: true;
+  secret: "codedschools.ng"
+}));
+app.use(flash());
 
 app.set("view engine", "ejs");
 
@@ -34,8 +44,11 @@ app.use(express.static(__dirname + "/public"));
 
 var mainRoutes = require('./routes/main');
 var userRoutes = require('./routes/user')
+var adminRoutes = require('./routes/admin');
+
 app.use(mainRoutes);
 app.use(userRoutes);
+app.use(adminRoutes);
 
 
 
