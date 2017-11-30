@@ -1,6 +1,28 @@
 const express = require('express');
 const router = express.Router();
+const passport = require('passport');
+var passportConfig = require('../config/passport')
 var User = require('../models/user');
+
+router.get("/login", (req, res, next)=>{
+  if(req.user) return res.redirect("/")
+  res.render("accounts/login", {message: req.flash('loginMessage')});
+});
+
+router.post("/login", passport.authenticate('local-login', {
+  successRedirect: "/profile",
+  failureRedirect: "/login",
+  failureFlash: true
+}))
+
+router.get('/profile', (req, res, next)=>{
+  User.findOne({_id: req.user._id}, (err, user)=>{
+    if(err) return next(err)
+    res.render('accounts/profile', {user: user});
+  })
+
+
+})
 
 router.get('/signup', (req, res, next)=>{
   res.render('accounts/signup', {

@@ -7,6 +7,9 @@ const ejsmate      =      require('ejs-mate');
 const session      =      require('express-session');
 const cookieParser =      require('cookie-parser');
 const flash        =      require('express-flash');
+const LocalStrategy = require('passport-local').Strategy;
+const MongoStore   =      require('connect-mongo')(session);
+const passport     =      require('passport');
 var secret         =      require('./config/secret');
 var User           =      require('./models/user');
 var Universities   =      require('./models/universities');
@@ -32,9 +35,12 @@ app.use(cookieParser());
 app.use(session({
   resave: true,
   saveUninitialized: true,
-  secret: secret.secretKey
+  secret: secret.secretKey,
+  store: new MongoStore({url: secret.database, autoReconnect: true})
 }));
 app.use(flash());
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.set("view engine", "ejs");
 
