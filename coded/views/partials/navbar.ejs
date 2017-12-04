@@ -1,60 +1,45 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-  <a class="navbar-brand" href="#">Codedschools.ng</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<div class="d-flex flex-row">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark d-flex flex-row">
+    <a class="navbar-brand" href="#">Codedschools.ng</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse d-flex flex-row" id="navbarsExampleDefault">
+      <ul class="navbar-nav mr-auto">
+          <% if(!user){%>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="d-flex justify-content-between">
+              <% for(var i = 0; i < categories.length; i++){%>
+                <a class="nav-link"><%= categories[i].name%></a>
+              <%}%>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/signup">New User</a>
+            </li>
+          <%}else{%>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <% for(var i = 0; i < categories.length; i++){%>
+              <a class="nav-link"><%= categories[i].name%></a>
+            <%}%>
+              <a class="nav-link" href="#"><%=user.profile.firstname + user.profile.lastname %></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">Profile</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/logout">logout</a>
+            </li>
+        <%}%>
+      </ul>
 
-  <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-    <ul class="navbar-nav mr-auto">
-        <% if(!user){%>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/signup">New User</a>
-          </li>
-        <%}else{%>
-          <li class="nav-item active">
-            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">primary schools</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Universities</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Polytechnics</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Colleges</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Non-degrees</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Transfer</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Internship/a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#"><%=user.profile.firstname + user.profile.lastname %></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/logout">logout</a>
-          </li>
-      <%}%>
-    </ul>
+    </div>
+  </nav>
 
-  </div>
-</nav>
+</div>

@@ -4,18 +4,95 @@ const Schema   = mongoose.Schema;
 var ProductSchema = new Schema({
   category:{type: Schema.Types.ObjectId, ref: 'Category'},
   name: String,
+  type: String,
   image: String,
   intro: String,
   state: String,
   address: String,
   website: String,
   fees: Number,
-  phonenumber: Number,
-  description: String
+  contactnumber: Number,
+  faculty1: {
+    title: String,
+    subjects: []
+
+  },
+  
+  faculty2: {
+    title: String,
+    subjects: []
+  
+
+  },
+  faculty2: {
+    title: String,
+    subjects: []
+  
+
+  },
+  faculty2: {
+    title: String,
+    subjects: []
+  },
+  
+    faculty3: {
+      title: String,
+      subjects: []
+    
+  
+    },
+    faculty4: {
+      title: String,
+      subjects: []
+    
+  
+    },
+    faculty5: {
+      title: String,
+      subjects: []
+    
+  
+    },
+    faculty6: {
+      title: String,
+      subjects: []
+    
+  
+    },
+    faculty7: {
+      title: String,
+      subjects: []
+    
+  
+    },
+
+  
+  faculty8: {
+    title: String,
+    subjects: []
+  
+
+  },
+
+  faculty9: {
+    title: String,
+    subjects: []
+  
+
+  },
+  faculty10: {
+    title: String,
+    subjects: []
+  
+
+  },
+   
+
+  paymentportal:String
 
 
 })
 
 
 
-module.exports = model.Schema("Product", ProductSchema);
+module.exports = mongoose.model("Product", ProductSchema);

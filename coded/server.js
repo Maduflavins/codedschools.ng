@@ -12,7 +12,9 @@ const MongoStore   =      require('connect-mongo')(session);
 const passport     =      require('passport');
 var secret         =      require('./config/secret');
 var User           =      require('./models/user');
+var Category       =      require('./models/category');
 var Universities   =      require('./models/universities');
+
 
 
 
@@ -46,6 +48,14 @@ app.use((req, res, next)=>{
   next();
 })
 
+app.use((req, res, next)=>{
+  Category.find({}, (err, categories)=>{
+    if(err) return next(err)
+    res.locals.categories = categories;
+    next();
+  })
+})
+
 app.set("view engine", "ejs");
 
 app.engine('ejs', ejsmate);
@@ -54,8 +64,9 @@ app.use(express.static(__dirname + "/public"));
 
 
 var mainRoutes = require('./routes/main');
-var userRoutes = require('./routes/user')
+var userRoutes = require('./routes/user');
 var adminRoutes = require('./routes/admin');
+var apiRoutes   = require('./api/api');
 
 
 app.use(mainRoutes, function(req, res, next){
@@ -65,8 +76,13 @@ app.use(userRoutes, function(req, res, next){
   next();
 })
 app.use(adminRoutes, function(req, res, next){
+  next();
 
 });
+app.use('/api', apiRoutes, function(req, res, next){
+  next();
+
+  });
 
 
 
