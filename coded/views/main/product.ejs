@@ -1,0 +1,59 @@
+<% layout('layout') -%>
+
+<div class="container">
+    <div class="row>
+        <div class="col-md-4">
+            <img src="<%=product.image%>">
+        </div>
+        <div class="col-md-4">
+        </div>
+        <div class= "col-md-4">
+            <h3><%=product.name %></h3>
+            <h3><%=product.type%></h3>
+            <h3><%=product.state%></h3>
+            <h3><%=product.address%></h3>
+            <h3><%=product.website%></h3>
+            <% if(!product.fees){%>
+                <h2>Fees:</h2>
+                <h4>will be available shortly</h4>
+                
+            <%}else{%>
+                <h2>Fees:</h2>
+                <h3><%=product.fees%></h3>
+            <%}%>
+            <% if(!product.contactnumber){%>
+                <h2>Contact Number:</h2>
+                <h3>Will be available shortly</h3>
+            <%}else{%>
+                <h2>Contact Number: </h2>
+                <h3><%=product.contactnumber%></h3> 
+           <%}%>
+            <hr>
+            <p><%=product.intro%></p>
+        </div>
+        <hr>
+        <div class="col-md-4">
+                <% if(!product.faculty9){%>
+                <h2>Faculty 9: </h2>
+                <h4>this will be available shortly</h4>
+            <%}else{%>
+                <h3><%=product.faculty9.title%>
+                <h2>Subjects:</h2>
+                <%=product.faculty9.subjects%>
+            <%}%>
+            
+        </div>
+        </div>
+        </div>
+        <div class="col-md-4">
+            <p>Addmission Requirements
+            <% if(!product.addmissionrequirements){%>
+                <p>Will be available shortly</p>
+            <%}else{%>
+                <p><%=product.addmissionrequirements%></p>
+            <%}%>
+            
+        </d>
+    </div>
+    <button>Add to Cart</button>
+</div>

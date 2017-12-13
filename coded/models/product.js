@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const Schema   = mongoose.Schema;
+const mongoosastic = require('mongoosastic');
 
 var ProductSchema = new Schema({
   category:{type: Schema.Types.ObjectId, ref: 'Category'},
@@ -86,11 +87,19 @@ var ProductSchema = new Schema({
   
 
   },
+
+  addissionrequirements: String,
    
 
   paymentportal:String
 
 
+});
+
+ProductSchema.plugin(mongoosastic, {
+  hosts:[
+    'localhost:9300'
+  ]
 })
 
 

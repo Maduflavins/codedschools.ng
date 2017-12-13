@@ -12,7 +12,7 @@
             </li>
             <li class="d-flex justify-content-between">
               <% for(var i = 0; i < categories.length; i++){%>
-                <a class="nav-link"><%= categories[i].name%></a>
+                <a href="/products/<%=categories[i]._id%>" class="nav-link"><%= categories[i].name%></a>
               <%}%>
             </li>
             <li class="nav-item">
