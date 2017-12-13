@@ -4,6 +4,7 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
+    
     <div class="collapse navbar-collapse d-flex flex-row" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
           <% if(!user){%>
@@ -11,6 +12,7 @@
               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="d-flex justify-content-between">
+              
               <% for(var i = 0; i < categories.length; i++){%>
                 <a href="/products/<%=categories[i]._id%>" class="nav-link"><%= categories[i].name%></a>
               <%}%>
@@ -40,6 +42,13 @@
       </ul>
 
     </div>
+    
   </nav>
+  <form class="navbar-form navbar-left" method="post" action="/search">
+      <div class="form-inline">
+        <input type="text" name="q" class="form-control" placeholder="Enter your search...">
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </div>
+  </form>
 
 </div>

@@ -26,6 +26,27 @@ stream.on('close', function(){
 
 stream.on('error', function(err){
   console.log(err);
+});
+
+router.post('/search', (req, res, next)=>{
+  res.redirect('/search?q=' + req.body.q);
+});
+
+router.get('/search', (req, res, next)=>{
+  if(req.query.q){
+    Product.search({
+      query_string:{query:req.query.q}
+    }, (err, results)=>{
+      if(err) return next(err);
+      var data = results.hits.hits.map(function(hit){
+        return hit
+      });
+      res.render('main/search-result', {
+        query: req.query.q,
+        data: data
+      });
+    })
+  }
 })
 
 
