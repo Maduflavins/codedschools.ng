@@ -4,6 +4,16 @@ var Product = require('../models/product');
 const async = require('async');
 
 
+router.post('/search', (req, res, next)=>{
+    Product.search({
+        query_string: { query: req.body.search_term }
+    }, (err, results)=>{
+        if(err) return next(err);
+        res.json(results);
+    })
+})
+
+
 
 router.get('/:name', function(req, res, next){
 
